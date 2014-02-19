@@ -1,0 +1,25 @@
+{
+  "name": "gulp-bailey",
+  "description": "a gulp plugin to compile bailey.js",
+  "version": "0.1.0",
+  "author": "Rolf Erik Lekang",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependecies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/relekang/gulp-bailey.git"
+  },
+  "keywords": [
+    "gulpplugin"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/relekang/gulp-bailey/issues"
+  }
+}
