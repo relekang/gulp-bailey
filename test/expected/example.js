@@ -61,7 +61,6 @@ c = new Animal();
 this.lol = a;
 a = "hi!";
 b = "this is a multine string.. wonder how that works!";
-var s = 'single quoted... with \' escaping as well';
 
 var f = function(g) {
 return 'hai';};

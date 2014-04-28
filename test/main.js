@@ -19,7 +19,7 @@ var createFile = function (filepath, contents) {
       console.log(newFile);
       should.exist(newFile);
       should.exist(newFile.path);
-      String(newFile.contents).should.equal(this.expected);
+      String(newFile.contents).should.equal(expected);
     };
   };
   
@@ -31,9 +31,10 @@ describe('gulp-bailey', function() {
           contents = new Buffer(fs.readFileSync(filepath)),
           expected = new Buffer(fs.readFileSync('test/expected/example.js'));
 
+
       bailey()
         .on('error', done)
-        .on('data', testData(expected, filepath.replace('bs', 'js'), done))
+        .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
         .write(createFile(filepath, contents));
     });
   });
