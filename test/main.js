@@ -37,5 +37,16 @@ describe('gulp-bailey', function() {
         .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
         .write(createFile(filepath, contents));
     });
+    it('should compile a file without comments', function(done) {
+        var filepath = "test/fixtures/example.bs",
+            contents = new Buffer(fs.readFileSync(filepath)),
+            expected = new Buffer(fs.readFileSync('test/expected/example.js'));
+
+
+        bailey({removeComments: true})
+          .on('error', done)
+          .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
+          .write(createFile(filepath, contents));
+    });
   });
 });
