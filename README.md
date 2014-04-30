@@ -16,5 +16,10 @@ gulp.task('default', function() {
 });
 ```
 
+### Options
+* `bare` - boolean
+* `node` - boolean
+* `removeComments` - boolean
+
 ### License
 MIT © Rolf Erik Lekang 
