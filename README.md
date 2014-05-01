@@ -1,4 +1,5 @@
 # gulp-bailey
+[![Build Status](https://travis-ci.org/relekang/gulp-bailey.svg?branch=master)](https://travis-ci.org/relekang/gulp-bailey)
 This gulp-plugin compiles [bailey.js](https://github.com/haeric/bailey.js) to javascript.
 
 ### Install
@@ -19,10 +20,12 @@ gulp.task('default', function() {
 ### Options
 #### `bare` - boolean
 This will make the Javascript file without the wrapper function.
+
 #### `node` - boolean
 This will result in a version with node imports instead of requirejs-imports
+
 #### `removeComments` - boolean  
-  This will remove all comments in the compiled version.
+This will remove all comments in the compiled version.
 
 ### License
 MIT © Rolf Erik Lekang
