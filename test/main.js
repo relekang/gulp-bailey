@@ -21,33 +21,39 @@ var createFile = function (filepath, contents) {
       should.exist(newFile.path);
       String(newFile.contents).should.equal(expected);
     };
+  },
+  testCompile = function (filepath, opt, done) {
+    var contents = new Buffer(fs.readFileSync(filepath)),
+        expected = bs.parseString(contents.toString(), opt);
+
+    bailey(opt)
+      .on('error', done)
+      .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
+      .write(createFile(filepath, contents));
+      done();
   };
   
 
 describe('gulp-bailey', function() {
   describe('bailey()', function() {
     it('should compile a file', function(done) {
-      var filepath = "test/fixtures/example.bs",
-        contents = new Buffer(fs.readFileSync(filepath)),
-        expected = bs.parseString(contents.toString());
-
-      bailey()
-        .on('error', done)
-        .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
-        .write(createFile(filepath, contents));
-        done();
-    });
+      testCompile('test/fixtures/example.bs', {}, done); 
+    }); 
 
     it('should compile a file without comments', function(done) {
-      var filepath = "test/fixtures/example.bs",
-        contents = new Buffer(fs.readFileSync(filepath)),
-        expected = bs.parseString(contents.toString(), {removeComments: true});
+      testCompile('test/fixtures/example.bs', {removeComments: true}, done); 
+    });
 
-      bailey({removeComments: true})
-        .on('error', done)
-        .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
-        .write(createFile(filepath, contents));
-        done();
+    it('should compile a file with node imports', function(done) {
+      testCompile('test/fixtures/example.bs', {node: true}, done); 
+    });
+
+    it('should compile a file with node imports without comments', function(done) {
+      testCompile('test/fixtures/example.bs', {node: true}, done); 
+    });
+
+    it('should compile a bare file', function(done) {
+      testCompile('test/fixtures/example.bs', {bare: true}, done); 
     });
   });
 });
