@@ -17,9 +17,12 @@ gulp.task('default', function() {
 ```
 
 ### Options
-* `bare` - boolean
-* `node` - boolean
-* `removeComments` - boolean
+#### `bare` - boolean
+This will make the Javascript file without the wrapper function.
+#### `node` - boolean
+This will result in a version with node imports instead of requirejs-imports
+#### `removeComments` - boolean  
+  This will remove all comments in the compiled version.
 
 ### License
-MIT © Rolf Erik Lekang 
+MIT © Rolf Erik Lekang
