@@ -3,7 +3,8 @@ var bailey = require('../'),
     should = require('should'),
     gutil = require('gulp-util'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    bs = require('bailey');
 
 var createFile = function (filepath, contents) {
     var base = path.dirname(filepath);
@@ -16,7 +17,6 @@ var createFile = function (filepath, contents) {
   },
   testData = function (expected, newPath, done) {
     return function (newFile) {
-      console.log(newFile);
       should.exist(newFile);
       should.exist(newFile.path);
       String(newFile.contents).should.equal(expected);
@@ -28,25 +28,26 @@ describe('gulp-bailey', function() {
   describe('bailey()', function() {
     it('should compile a file', function(done) {
       var filepath = "test/fixtures/example.bs",
-          contents = new Buffer(fs.readFileSync(filepath)),
-          expected = new Buffer(fs.readFileSync('test/expected/example.js'));
-
+        contents = new Buffer(fs.readFileSync(filepath)),
+        expected = bs.parseString(contents.toString());
 
       bailey()
         .on('error', done)
         .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
         .write(createFile(filepath, contents));
+        done();
     });
+
     it('should compile a file without comments', function(done) {
-        var filepath = "test/fixtures/example.bs",
-            contents = new Buffer(fs.readFileSync(filepath)),
-            expected = new Buffer(fs.readFileSync('test/expected/example.js'));
+      var filepath = "test/fixtures/example.bs",
+        contents = new Buffer(fs.readFileSync(filepath)),
+        expected = bs.parseString(contents.toString(), {removeComments: true});
 
-
-        bailey({removeComments: true})
-          .on('error', done)
-          .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
-          .write(createFile(filepath, contents));
+      bailey({removeComments: true})
+        .on('error', done)
+        .on('data', testData(expected.toString(), filepath.replace('bs', 'js'), done))
+        .write(createFile(filepath, contents));
+        done();
     });
   });
 });
