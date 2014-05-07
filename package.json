@@ -1,7 +1,7 @@
 {
   "name": "gulp-bailey",
   "description": "a gulp plugin to compile bailey.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Rolf Erik Lekang",
   "main": "index.js",
   "scripts": {
