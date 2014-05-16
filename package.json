@@ -18,6 +18,10 @@
   "keywords": [
     "gulpplugin"
   ],
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/relekang/gulp-bailey/issues"
