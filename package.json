@@ -16,7 +16,9 @@
     "url": "git://github.com/relekang/gulp-bailey.git"
   },
   "keywords": [
-    "gulpplugin"
+    "gulpplugin",
+    "bailey",
+    "bailey.js",
   ],
   "files": [
     "index.js",
@@ -27,7 +29,7 @@
     "url": "https://github.com/relekang/gulp-bailey/issues"
   },
   "dependencies": {
-    "bailey": ">=0.0.1",
+    "bailey": ">=0.0.6",
     "event-stream": "^3.1.2",
     "gulp-util": "^2.2.14"
   }
