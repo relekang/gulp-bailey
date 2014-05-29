@@ -12,11 +12,15 @@ module.exports = function (opt) {
     var str = file.contents.toString('utf8'),
         dest = gutil.replaceExtension(file.path, ".js");
 
-    var data = bailey.parseString(str, opt);
+    try {
+        var data = bailey.parseString(str, opt);
 
-    file.contents = new Buffer(data);
-    file.path = dest;
-    this.emit('data', file);
+        file.contents = new Buffer(data);
+        file.path = dest;
+        this.emit('data', file);
+    } catch (e) {
+        return this.emit('error', new Error(e));
+    }
   }
 
   return es.through(modifyFile);
